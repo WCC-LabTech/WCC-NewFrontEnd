@@ -122,6 +122,7 @@ function auth(url) {
 	this.reset = function() {
 		var data = {};
 		data.link = querystring('link');
+		data.link = data.link[0];
 		data.password = $('#password_reset').val();
 		var confirm = $('#confirm_reset').val();
 		if (data.password == confirm) {

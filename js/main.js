@@ -1,5 +1,5 @@
-var url = "http://home.cspuredesign.com:8080/";
-//var url = "bosapp.wccnet.edu:8080/";
+//var url = "http://home.cspuredesign.com:8080/";
+var url = "http://bosapp.wccnet.edu:8080/";
 
 
 var time = new time(url);
