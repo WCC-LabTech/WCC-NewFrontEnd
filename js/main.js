@@ -1,4 +1,5 @@
 var url = "http://home.cspuredesign.com:8080/";
+//var url = "bosapp.wccnet.edu:8080/";
 
 
 var time = new time(url);
@@ -110,6 +111,17 @@ $(document).on('click', '#inventory', function() {
     return false;
 });
 
+$(document).on('submit', '#recoveryForm', function() {
+	auth.recovery();
+
+	return false;
+});
+
+$(document).on('submit', '#resetForm', function() {
+	auth.reset();
+
+	return false;
+});
 
 
 
