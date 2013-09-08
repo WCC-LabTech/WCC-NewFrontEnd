@@ -127,12 +127,12 @@ function auth(url) {
 		if (data.password == confirm) {
 			data = $.param(data);
 			$.post(url + 'password/reset/', data, function() {
-				$('#errorMsg').html('Your password has been updated. You can log in now.');
+				$('#errorMsg').html('Your password has been updated. This page will refresh in 5 seconds.');
 				$('#resetSubmit').remove();
 
 				setTimeout(function() {
 					window.location.replace("http://bosapp.wccnet.edu");
-				}, 2000);
+				}, 5000);
 			});
 
 		} else {
