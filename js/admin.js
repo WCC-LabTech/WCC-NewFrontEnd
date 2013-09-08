@@ -31,7 +31,7 @@ function admin(url) {
 		});
 	}
 
-	function payroll_table(data, start) {
+	function payroll_table(data, s_date) {
 
 		var html = '<table class="table table-striped table-bordered tablesorter" cellspacing="0" cellpadding="0" id="payrollTable">\
 						<thead>\
@@ -41,9 +41,8 @@ function admin(url) {
 							</tr>\
 						</thead>\
 						<tbody>';
-
+		
 		for (i in data) {
-			var day = start;
 			html += '<tr>\
 						<td>' + data[i].user.first_name + ' ' + data[i].user.last_name + '</td>\
 					 	<td colspan="7">\
@@ -65,34 +64,13 @@ function admin(url) {
 					 					<td>Week 1</td>';
 			var events = data[i].events;
             var y = 7;
+			var day = new Date(s_date);
             while (y--) {
                 html += '<td>';
                 for (x in events) { 
                     var date = day.getFullYear() + '-' + ('0' + parseInt(day.getMonth() + 1)).slice(-2) + '-' + ('0' + day.getDate()).slice(-2);
+                    
                     if (events[x].start_date == date) {
-                    	/*var start_time = events[x].start_time.split(':');
-                    	var end = events[x].end_time.split(':'); 
-                    	var stime;
-                    	var etime;
-                    	if (start_time['0'] > 12) {
-                    		start_time['0'] -= 12;
-                    		stime = 'PM';
-                    	} else if (start_time['0'] == 12) {
-                    		stime = 'PM';
-                    	} else {
-                    		if (start_time['0'] < 10) {
-                    			start_time['0'] = start_time['0'].slice(-1);
-                    		}
-                    		stime = 'AM'
-                    	}
-                    	if (end['0'] > 12) {
-                    		end['0'] -= 12;
-                    		etime = 'PM';
-                    	} else if (end['0'] == 12) {
-                    		etime = 'PM';
-                    	} else {
-                    		etime = 'AM';
-                    	} */
                         if (events[x].clocked_in != true) {
                             html += '<span class="highlight">';
                         } else {
@@ -105,7 +83,6 @@ function admin(url) {
                 day.setDate(day.getDate()+1);
                 html += '</td>';
             }
-            
             html += '</tr><tr><td>Week 2</td>';
             y = 7;
             while (y--) {
@@ -113,29 +90,6 @@ function admin(url) {
                 for (x in events) {
                     var date = day.getFullYear() + '-' + ('0' + parseInt(day.getMonth() + 1)).slice(-2) + '-' + ('0' + day.getDate()).slice(-2);
                     if (events[x].start_date == date) {
-                        /*var start_time = events[x].start_time.split(':');
-                    	var end = events[x].end_time.split(':'); 
-                    	var stime;
-                    	var etime;
-                    	if (start_time['0'] > 12) {
-                    		start_time['0'] -= 12;
-                    		stime = 'PM';
-                    	} else if (start_time['0'] == 12) {
-                    		stime = 'PM';
-                    	} else {
-                    		if (start_time['0'] < 10) {
-                    			start_time['0'] = start_time['0'].slice(-1);
-                    		}
-                    		stime = 'AM'
-                    	}
-                    	if (end['0'] > 12) {
-                    		end['0'] -= 12;
-                    		etime = 'PM';
-                    	} else if (end['0'] == 12) {
-                    		etime = 'PM';
-                    	} else {
-                    		etime = 'AM';
-                    	}*/
                         if (events[x].clocked_in != true) {
                             html += '<span class="highlight">';
                         } else {
@@ -150,6 +104,7 @@ function admin(url) {
                 html += '</td>';
             }
             html += '</tr></table></td></tr>';
+            console.log(s_date);
 		}
 
 		html += '</tbody><tfoot></tfoot></table>';
