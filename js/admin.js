@@ -99,7 +99,7 @@ function admin(url) {
                             html += '<span>';
                         }
                         //html += start_time['0'] + ':' + start_time['1'] + ' ' + stime + ' - ' + end['0'] + ':' + end['1'] + ' ' + etime + '</span><br />';
-                        html += events[x].start_time + ' - ' + events[x].end_time + '<br />';
+                        html += events[x].start + ' - ' + events[x].end + '<br />';
                     }
 		        }
                 day.setDate(day.getDate()+1);
@@ -143,7 +143,7 @@ function admin(url) {
                         }
  
                         //html += start_time['0'] + ':' + start_time['1'] + ' ' + stime + ' - ' + end['0'] + ':' + end['1'] + ' ' + etime + '</span><br />';
-                        html += events[x].start_time + ' - ' + events[x].end_time + '<br />';
+                        html += events[x].start + ' - ' + events[x].end + '<br />';
                     }
                 }
                 day.setDate(day.getDate()+1);

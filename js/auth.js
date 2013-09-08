@@ -109,6 +109,38 @@ function auth(url) {
 			});
 		};
 
+	this.recovery = function() {
+		var data = {};
+		data.username = $('#username_reset').val();
+		data = $.param(data);
+		$.post(url + 'password/request_link/', data, function() {
+			$('#recoverErrorMsg').html('A link has been sent to your email address to reset your password');
+			$('#recoverSubmit').remove();
+		});
+	}
+
+	this.reset = function() {
+		var data = {};
+		data.link = querystring('link');
+		data.password = $('#password_reset').val();
+		var confirm = $('#confirm_reset').val();
+		if (data.password == confirm) {
+			data = $.param(data);
+			$.post(url + 'password/reset/', data, function() {
+				$('#errorMsg').html('Your password has been updated. This page will refresh in 5 seconds.');
+				$('#resetSubmit').remove();
+
+				setTimeout(function() {
+					window.location.replace("http://bosapp.wccnet.edu");
+				}, 5000);
+			});
+
+		} else {
+			$('#errorMsg').html('Passwords do not match');
+		}
+
+	}
+
 	if ($.cookie('userId') && $.cookie('userId') !== 'null') {
 		data = {};
 		data.token = $.cookie('token');
@@ -122,6 +154,10 @@ function auth(url) {
 		setVariables(data);
 		loggedIn(localStorage['userId']);
 	};
+	var empty = [];
+	if (querystring('link').length !== 0) {
+		$('#passwordReset').modal('show');
+	}
 	var that = this;
 
 	function setVariables(data) {
@@ -139,6 +175,13 @@ function auth(url) {
         inv.userId = data.id;
 	}
 
+	function querystring(key) {
+	   var re=new RegExp('(?:\\?|&)'+key+'=(.*?)(?=&|$)','gi');
+	   var r=[], m;
+	   while ((m=re.exec(document.location.search)) != null) r.push(m[1]);
+	   return r;
+	}
+
 	function loggedIn(id) {
 		userId = id;
 
@@ -152,6 +195,7 @@ function auth(url) {
 			success: function(data) {
 				this.user = data.first_name + " " + data.last_name;
 				user = this.user;
+				$('#forgotPassword').remove();
 				var html = this.user;
 				var element = $('#user');
 				element.children('h3').html(html);
