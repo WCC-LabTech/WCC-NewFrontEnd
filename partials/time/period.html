@@ -1,0 +1,140 @@
+<div id="workeventTable" class="table-responsive">
+</div>
+
+<div class="modal fade" id="addEntry">
+  	<div class="modal-dialog">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        		<h4 class="modal-title">Add Entry</h4>
+      		</div>
+      		<div class="modal-body">
+        		<form class="form" role="form" id="entryForm">
+        			<div class="form-group">
+        				<label for="category">Category</label>
+        				<select class="form-control" name="category" id="category">
+        				</select>
+        			</div>
+                    <div id="start_time" class="form-group input-append date">
+                        <label for="start_time">Start Date/Time</label>
+                        <input data-format="yyyy/MM/dd hh:mm:ss" type="text" name="t_start" class="form-control"></input>
+                        <span class="add-on">
+                            <i data-time-icon="glyphicon glyphicon-time" data-date-icon="glyphicon glyphicon-calendar">
+                            </i>
+                        </span>
+                    </div>
+        			<div class="form-group input-append date" id="end_time">
+        				<label for="end_time">End Date/Time</label>
+        				<input data-format="yyyy/MM/dd hh:mm:ss" type="text" class="form-control input-small" name="t_end" />
+        				<span class="add-on"><i data-time-icon="glyphicon glyphicon-time" data-date-icon="glyphicon glyphicon-calendar"></i></span>
+        			</div>
+        			<div class="form-group">
+        				<label for="on_campus">Clocked In?</label>
+        				<input type="checkbox" class="form-control" name="on_campus" id="on_campus" />
+        			</div>
+        			<div class="form-group">
+        				<label for="comments">Comments</label>
+        				<textarea class="form-control" name="comments" id="comments"></textarea>
+        			</div>
+      		</div>
+      		<div class="modal-footer">
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        		<button type="Submit" class="btn btn-primary">Add Entry</button>
+        	</form>
+      		</div>
+    	</div><!-- /.modal-content -->
+  	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="updateEntry">
+  	<div class="modal-dialog">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        		<h4 class="modal-title">Update Entry</h4>
+      		</div>
+      		<div class="modal-body">
+        		<form class="form" role="form" id="updateForm">
+        			<div class="form-group">
+        				<label for="category">Category</label>
+        				<select class="form-control" name="category" id="category_update">
+        				</select>
+        			</div>
+        			<div class="form-group input-append date" id="start_time_update">
+        				<label for="start_time">Start Date/Time</label>
+        				<input data-format="yyyy/MM/dd hh:mm:ss" type="text" class="form-control input-small" name="t_start"  />
+        				<span class="add-on"><i data-time-icon="glyphicon glyphicon-time" data-date-icon="glyphicon glyphicon-calendar"></i></span>
+        			</div>
+        			<div class="form-group input-append date" id="end_time_update">
+        				<label for="end_time">End Date/Time</label>
+        				<input data-format="yyyy/MM/dd hh:mm:ss" type="text" class="form-control input-small" name="t_end" />
+        				<span class="add-on"><i data-time-icon="glyphicon glyphicon-time" data-date-icon="glyphicon glyphicon-calendar"></i></span>
+        			</div>
+        			<div class="form-group">
+        				<label for="on_campus">Clocked In?</label>
+        				<input type="checkbox" class="form-control" name="on_campus_update" id="on_campus_update"/>
+        			</div>
+        			<div class="form-group">
+        				<label for="comments">Comments</label>
+        				<textarea class="form-control" name="comments" id="comments_update"></textarea>
+        			</div>
+        			<input type="hidden" name="updateId" id="updateId" value="" />
+      		</div>
+      		<div class="modal-footer">
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        		<a href="#" id="timeUpdate" class="btn btn-primary">Update Entry</a>
+        	</form>
+      		</div>
+    	</div><!-- /.modal-content -->
+  	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script>
+    function identifyBrowser(userAgent, elements) {
+    var regexps = {
+            'Chrome': [ /Chrome\/(\S+)/ ],
+            'Firefox': [ /Firefox\/(\S+)/ ],
+            'MSIE': [ /MSIE (\S+);/ ],
+            'Opera': [
+                /Opera\/.*?Version\/(\S+)/,     /* Opera 10 */
+                /Opera\/(\S+)/                  /* Opera 9 and older */
+            ],
+            'Safari': [ /Version\/(\S+).*?Safari\// ]
+        },
+        re, m, browser, version;
+ 
+        if (userAgent === undefined)
+            userAgent = navigator.userAgent;
+     
+        if (elements === undefined)
+            elements = 2;
+        else if (elements === 0)
+            elements = 1337;
+     
+        for (browser in regexps)
+            while (re = regexps[browser].shift())
+                if (m = userAgent.match(re)) {
+                    version = (m[1].match(new RegExp('[^.]+(?:\.[^.]+){0,' + --elements + '}')))[0];
+                    return browser + ' ' + version;
+                }
+     
+        return null;
+    }
+
+    $('#start_time').datetimepicker({
+        language: 'en',
+        pick12HourFormat: true
+    });
+    $('#end_time').datetimepicker({
+        language: 'en',
+        pick12HourFormat: true
+    });
+    $('#start_time_update').datetimepicker({
+        language: 'en',
+        pick12HourFormat: true
+    });
+    $('#end_time_update').datetimepicker({
+        language: 'en',
+        pick12HourFormat: true
+    });
+
+</script>
