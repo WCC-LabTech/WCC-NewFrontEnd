@@ -104,7 +104,6 @@ function admin(url) {
                 html += '</td>';
             }
             html += '</tr></table></td></tr>';
-            console.log(s_date);
 		}
 
 		html += '</tbody><tfoot></tfoot></table>';

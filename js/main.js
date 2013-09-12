@@ -1,5 +1,5 @@
-//var url = "http://home.cspuredesign.com:8080/";
-var url = "http://bosapp.wccnet.edu:8080/";
+var url = "http://home.cspuredesign.com:8080/";
+//var url = "http://bosapp.wccnet.edu:8080/";
 
 
 var time = new time(url);
@@ -125,7 +125,7 @@ $(document).on('submit', '#resetForm', function() {
 
 
 
-$(document).on('click', '#reports', function() {
+$(document).on('click', '#payrollLink', function() {
 	admin.main();
 	$('#admin').click();
 
