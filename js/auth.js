@@ -239,7 +239,7 @@ function auth(url) {
 		}
 		if (id == 4) {
 			var nav = $('nav');
-			var html = '<ul class="nav navbar-nav navbar-right"><li id="admin" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="#" id="reports">Time Tracking</a></li></ul></li></ul>';
+			var html = '<ul class="nav navbar-nav navbar-right"><li id="admin" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="#" id="payrollLink">Payroll</a></li><li><a href="#" id="reports">Reports</li></ul></li></ul>';
 			nav.children('.collapse').append(html);
 			
 		}
