@@ -125,7 +125,7 @@ $(document).on('submit', '#resetForm', function() {
 
 
 
-$(document).on('click', '#reports', function() {
+$(document).on('click', '#payrollLink', function() {
 	admin.main();
 	$('#admin').click();
 
