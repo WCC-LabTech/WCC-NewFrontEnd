@@ -41,11 +41,14 @@ function admin(url) {
 							</tr>\
 						</thead>\
 						<tbody>';
-        //var comments = '<div class="accordion" id="accordion2"><div class="accordion-group"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse' + data[i].pk + '">Comments</a></div><div id="collapse' + data[i].pk + '" class="accordion-body collapse in"><div class="accordion-inner">';
+        var begM = s_date.getUTCMonth() + 1;
+        var begD = s_date.getUTCDate();
+        var begY = s_date.getUTCFullYear();
+        var begDate = begM + '/' + begD + '/' + begY;
 		
 		for (i in data) {
 			html += '<tr>\
-						<td>' + data[i].user.first_name + ' ' + data[i].user.last_name + '</td>\
+						<td>' + data[i].user.last_name + ', ' + data[i].user.first_name + '</td>\
 					 	<td colspan="7">\
 					 		<table class="table table-striped" id="payroll_dates">\
 					 			<thead>\
@@ -62,9 +65,7 @@ function admin(url) {
 					 			</thead>\
 					 			<tbody>\
 					 				<tr>\
-					 					<td>Week 1</td>';
-             var comments = '<div class="accordion" id="accordion2"><div class="accordion-group"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse' + data[i].user.id + '">Comments</a></div><div id="collapse' + data[i].user.id + '" class="accordion-body collapse"><div class="accordion-inner">';
-
+					 					<td>'+ begDate + '</td>';
 			var events = data[i].events;
             var y = 7;
 			var day = new Date(s_date);
@@ -81,13 +82,18 @@ function admin(url) {
                         }
                         //html += start_time['0'] + ':' + start_time['1'] + ' ' + stime + ' - ' + end['0'] + ':' + end['1'] + ' ' + etime + '</span><br />';
                         html += events[x].start + ' - ' + events[x].end + '<br />';
-                        comments += events[x].start_date + ': ' + events[x].comments + '<br />';
                     }
 		        }
                 day.setDate(day.getDate()+1);
                 html += '</td>';
             }
-            html += '</tr><tr><td>Week 2</td>';
+            var e_date = new Date(); 
+            e_date.setDate(s_date.getDate() + 7);
+            var endM = e_date.getUTCMonth() + 1;
+            var endD = e_date.getUTCDate();
+            var endY = e_date.getUTCFullYear();
+            var endDate = endM + '/' + endD + '/' + endY;
+            html += '</tr><tr><td>' + endDate + '</td>';
             y = 7;
             while (y--) {
                 html += '<td>';
@@ -102,14 +108,12 @@ function admin(url) {
  
                         //html += start_time['0'] + ':' + start_time['1'] + ' ' + stime + ' - ' + end['0'] + ':' + end['1'] + ' ' + etime + '</span><br />';
                         html += events[x].start + ' - ' + events[x].end + '<br />';
-                        comments += events[x].start_date + ': ' + events[x].comments + '<br />';
                     }
                 }
                 day.setDate(day.getDate()+1);
                 html += '</td>';
             }
-            comments += '</div></div></div></div>';
-            html += '</tr></table>' + comments + '</td></tr>';
+            html += '</tr></table></td></tr>';
 		}
 
 		html += '</tbody><tfoot></tfoot></table>';
