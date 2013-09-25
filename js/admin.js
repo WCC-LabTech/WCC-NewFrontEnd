@@ -47,8 +47,20 @@ function admin(url) {
         var begDate = begM + '/' + begD + '/' + begY;
 		
 		for (i in data) {
+            var show = false;
+            var hide = false;
+            for (j in data[i].user.groups) {
+                if (data[i].user.groups[j] > 2) {
+                    hide = true;
+                } else {
+                    show = true;
+                }
+            }
+            if (hide == true && show == false) {
+                continue;
+            }
 			html += '<tr>\
-						<td>' + data[i].user.last_name + ', ' + data[i].user.first_name + '</td>\
+						<td><a href="mailto:' + data[i].user.email + '">' + data[i].user.last_name + ', ' + data[i].user.first_name + '</a></td>\
 					 	<td colspan="7">\
 					 		<table class="table table-striped" id="payroll_dates">\
 					 			<thead>\
