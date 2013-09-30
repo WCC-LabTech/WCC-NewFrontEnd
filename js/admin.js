@@ -78,6 +78,7 @@ function admin(url) {
 					 			<tbody>\
 					 				<tr>\
 					 					<td>'+ begDate + '</td>';
+			var comments = '<div class="accordion" id="accordion2"><div class="accordion-group"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse' + data[i].user.id + '">Comments</a></div><div id="collapse' + data[i].user.id + '" class="accordion-body collapse"><div class="accordion-inner">';
 			var events = data[i].events;
             var y = 7;
 			var day = new Date(s_date);
@@ -94,6 +95,7 @@ function admin(url) {
                         }
                         //html += start_time['0'] + ':' + start_time['1'] + ' ' + stime + ' - ' + end['0'] + ':' + end['1'] + ' ' + etime + '</span><br />';
                         html += events[x].start + ' - ' + events[x].end + '<br />';
+                        comments += events[x].start_date + ': ' + events[x].comments + '<br />';
                     }
 		        }
                 day.setDate(day.getDate()+1);
@@ -120,12 +122,14 @@ function admin(url) {
  
                         //html += start_time['0'] + ':' + start_time['1'] + ' ' + stime + ' - ' + end['0'] + ':' + end['1'] + ' ' + etime + '</span><br />';
                         html += events[x].start + ' - ' + events[x].end + '<br />';
+                        comments += events[x].start_date + ': ' + events[x].comments + '<br />';
                     }
                 }
                 day.setDate(day.getDate()+1);
                 html += '</td>';
             }
-            html += '</tr></table></td></tr>';
+            comments += '</div></div></div></div>';
+            html += '</tr></table>' + comments + '</td></tr>';
 		}
 
 		html += '</tbody><tfoot></tfoot></table>';
