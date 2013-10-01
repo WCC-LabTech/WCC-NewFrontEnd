@@ -1,0 +1,22 @@
+body {background-color:#2B6A47;}
+
+.wrapper {background-color:#fff; box-shadow:-2px 2px 8px #000;}
+
+header {margin-top:5px;}
+
+#user {display:none; text-align:right; margin-bottom:5px;}
+
+table td a {display:block; width:100%;}
+table .total {text-align:right; font-weight:bold;}
+#payroll_dates {font-size:.8em;}
+
+.highlight {background-color:#ffff00;}
+
+.deleteButton {width:67px;}
+
+/*.userList{position:absolute; left:15px; top:100px; min-height:100px;}*/
+
+@media only screen and (max-device-width: 768px) {
+	/*.navbar {position:fixed; top:0; left:0; width:100%;}*/
+
+	}

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Washtenaw Community College: BOS Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/jquery.jqplot.css" />
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="css/datepicker.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper container">
+      <header>
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-5 hidden-xs">
+                <img src="images/wcc-logo-single-line-black.png" alt="Washtenaw Community College" />
+            </div>
+            <div id="login" class="col-lg-5 col-md-5 col-sm-5 col-lg-offset-2">
+                <div id="loginError" class="text-danger"></div>
+                <form id="loginForm" class="form-inline" method="post" action='?/auth/login'>
+                    <div class="form-group">
+                        <label for="username" class="sr-only">Username</label>
+                        <input class="form-control" type="text" name="username" id="username" placeholder="Username" />
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="sr-only">Password</label>
+                        <input class="form-control" type="password" name="password" id="password" placeholder="Password" /> 
+                    </div>
+                    <input class="btn btn-default" type="submit" value="Login" />
+                </form>
+            </div>
+            <div class="col-lg-3 col-lg-offset-4" id="user">
+                <h3></h3>
+                <button name='?/auth/logout' id='logout' class='btn btn-default btn-sm'>Logout</button>
+            </div>
+        </div>
+      </header>
+      <nav class="navbar navbar-inverse" role="navigation">
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+          </div>
+          <div class="collapse navbar-collapse navbar-ex1-collapse">
+              <ul class="nav navbar-nav">
+                  <li><a href="?/wiki" target="_blank" id="wiki">Wiki</a></li>
+                  <li><a href="?/time" data-toggle="collapse">Time Tracking</a></li>
+                  <li id="facultyReq"><a href="?/faculty/requests" id="requests" data-toggle="collapse">Faculty Requests</a></li>
+                  <li><a href="#" id="inventory" data-toggle="collapse">Inventory Management</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right" id="forgotPassword">
+                  <li><a href="#passwordRecovery" id="password" data-toggle="modal">Forgot Password?</a></li>
+              </ul>
+          </div><!-- /.navbar-collapse -->
+      </nav>
+      <content id="content">
+        <div class="jumbotron">
+            <div class="container">
+                <h1>Washtenaw Community College</h1>
+                <p>The New and Improved BOS / CIS Web Application Portal.</p>
+                
+            </div>
+        </div>
+
+      </content>
+    </div>
+    <div class="modal fade" id="facultyRequests">
+        <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Submit a Request</h4>
+              </div>
+              <div class="modal-body">
+                <form class="form" role="form" id="requestForm" method="post" action="?/faculty/addRequest">
+                  <div class="form-group">
+                    <label for="category">Faculty Name</label>
+                    <p class="form-control-static" id="facultyName"></p>
+                    <input type="hidden" name="faculty_Name" id="faculty_Name" />
+                  </div>
+                  <div class="form-group">
+                    <label for="start_date">Requested Lab Tech</label>
+                    <select class="form-control" name="labtech_Name" id="labtech_Name">
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="start_time">Request Type</label>
+                    <select class="form-control" name="request_Type" id="request_Type">
+                        <option value="Room">Room</option>
+                        <option value="Equipment">Equipment</option>
+                        <option value="Configure">Configure</option>
+                        <option value="Labs">Labs</option>
+                        <option value="Other">Other</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="end_time">Subject</label>
+                    <input type="text" class="form-control" name="subject" id="subject" />
+                  </div>
+                  <div class="form-group">
+                    <label for="on_campus">Description</label>
+                    <textarea class="form-control" name="description" id="description"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="comments">Due Date</label>
+                    <input type="date" class="form-control" name="due_date" id="due_date" />
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <input type="Submit" class="btn btn-primary" value="Submit Request" />
+              </form>
+              </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <div class="modal fade" id="passwordRecovery">
+        <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Password Recovery</h4>
+              </div>
+              <div class="modal-body">
+                <div id="recoverErrorMsg"></div>
+                <form class="form" role="form" id="recoveryForm">
+                  <div class="form-group">
+                    <label for="end_time">Username</label>
+                    <input type="text" class="form-control" name="username" id="username_reset" />
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="Submit" id="recoverSubmit" class="btn btn-primary">Recover Password</button>
+              </form>
+              </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+     <div class="modal fade" id="passwordReset">
+        <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Password Recovery</h4>
+              </div>
+              <div class="modal-body">
+                <div id="errorMsg"></div>
+                <form class="form" role="form" id="resetForm">
+                  <div class="form-group">
+                    <label for="end_time">New Password</label>
+                    <input type="password" class="form-control" name="password" id="password_reset" />
+                  </div>
+                   <div class="form-group">
+                    <label for="end_time">Confirm Password</label>
+                    <input type="password" class="form-control" name="confirm_password" id="confirm_reset" />
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="Submit" id="resetSubmit" class="btn btn-primary">Reset Password</button>
+              </form>
+              </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="//code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="js/jquery.jqplot.js"></script>
+    <script src="js/jqplot.barRenderer.min.js"></script>
+    <script src="js/jqplot.categoryAxisRenderer.min.js"></script>
+    <script src="js/jqplot.pointLabels.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/jquery.tablesorter.js"></script>
+    <script src="js/bootstrap-datetimepicker.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/time.js"></script>
+    <script src="js/faculty.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="js/inventory.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+      $('#due_date').datepicker({
+        format: 'yyyy-mm-dd'
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,114 @@
+<div id="workeventTable" class="table-responsive">
+</div>
+
+<div class="modal fade" id="addEntry">
+  	<div class="modal-dialog">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        		<h4 class="modal-title">Add Entry</h4>
+      		</div>
+      		<div class="modal-body">
+        		<form class="form" role="form" id="entryForm" method="post" action="?/time/addEntry">
+        			<div class="form-group">
+        				<label for="category">Category</label>
+        				<select class="form-control" name="category" id="category">
+        				</select>
+        			</div>
+                    <div class="form-group">
+                        <label for="start_time">Start Date/Time</label>
+                        <div class="input-group date" id="start_time">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            <input data-format="yyyy/MM/dd hh:mm:ss" type='text' name="t_start" class="form-control" />
+                        </div>
+                    </div>
+        			<div class="form-group">
+                        <label for="end_time">End Date/Time</label>
+                        <div class="input-group date" id="end_time">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            <input data-format="yyyy/MM/dd hh:mm:ss" type='text' name="t_end" class="form-control" />
+                        </div>
+                    </div>
+        			<div class="form-group">
+        				<label for="on_campus">Clocked In?</label>
+        				<input type="checkbox" class="form-control" name="on_campus" id="on_campus" />
+        			</div>
+        			<div class="form-group">
+        				<label for="comments">Comments</label>
+        				<textarea class="form-control" name="comments" id="comments"></textarea>
+        			</div>
+      		</div>
+      		<div class="modal-footer">
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        		<button type="Submit" class="btn btn-primary">Add Entry</button>
+        	</form>
+      		</div>
+    	</div><!-- /.modal-content -->
+  	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="updateEntry">
+  	<div class="modal-dialog">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        		<h4 class="modal-title">Update Entry</h4>
+      		</div>
+      		<div class="modal-body">
+        		<form class="form" role="form" id="updateForm" method="post" action="?/time/update">
+        			<div class="form-group">
+        				<label for="category">Category</label>
+        				<select class="form-control" name="category" id="category_update">
+        				</select>
+        			</div>
+        			<div class="form-group">
+                        <label for="start_time">Start Date/Time</label>
+                        <div class="input-group date" id="start_time_update">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            <input data-format="yyyy/MM/dd hh:mm:ss" type='text' name="t_start" class="form-control" />
+                        </div>
+        			</div>
+        			<div class="form-group">
+                        <label for="end_time">End Date/Time</label>
+                        <div class="input-group date" id="end_time_update">
+        				    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            <input data-format="yyyy/MM/dd hh:mm:ss" type='text' name="t_end" class="form-control" />
+                        </div>
+        			</div>
+        			<div class="form-group">
+        				<label for="on_campus">Clocked In?</label>
+        				<input type="checkbox" class="form-control" name="on_campus_update" id="on_campus_update"/>
+        			</div>
+        			<div class="form-group">
+        				<label for="comments">Comments</label>
+        				<textarea class="form-control" name="comments" id="comments_update"></textarea>
+        			</div>
+        			<input type="hidden" name="updateId" id="updateId" value="" />
+      		</div>
+      		<div class="modal-footer">
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        		<input type="submit" id="timeUpdate" class="btn btn-primary" value="Update Entry" />
+        	</form>
+      		</div>
+    	</div><!-- /.modal-content -->
+  	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script>
+    $('#start_time').datetimepicker({
+        language: 'en',
+        pick12HourFormat: true
+    });
+    $('#end_time').datetimepicker({
+        language: 'en',
+        pick12HourFormat: true
+    });
+    $('#start_time_update').datetimepicker({
+        language: 'en',
+        pick12HourFormat: true
+    });
+    $('#end_time_update').datetimepicker({
+        language: 'en',
+        pick12HourFormat: true
+    });
+
+</script>
