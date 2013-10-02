@@ -11,56 +11,43 @@ var time = {
 			6 : "Saturday",
 	},
 	categories : function() {
-		$.ajax({
-			url: time.config.url + 'category/',
-			method: 'GET',
-			dataType: 'JSON',
-			async: false,
-
-			success : function(response) {
-				time.cats = response;
-			}
+		var cats = time.config.ajax(time.config.url + 'category/', 'get', '', false);
+		cats.success(function(response) {
+			time.cats = response;
 		});
 	},
 	populate_table : function() {
-		$.ajax({
-			url: time.config.url + 'workevent/payperiod/' + time.current_period + '/',
-			method: 'GET',
-			dataType: 'JSON',
-			beforeSend: function (request) {
-				request.setRequestHeader("AUTHENTICATE", time.config.token);
-			},
+		var payperiod = time.config.ajax(time.config.url + 'workevent/payperiod/' + time.current_period + '/', 'get');
+		payperiod.success(function(response) {
+			var html = "";
+			var total = 0;
+			var mins = 0;
+			$('#workevents').remove();
+			$('#workeventTable').append('<table class="table table-striped table-bordered tablesorter" cellspacing="0" cellpadding="0" id="workevents"><thead><tr><th>Date</th><th>Day</th><th>Category</th><th>Start</th><th>End</th><th>Hour\'s Worked</th><th>Modify Entry</th></tr></thead><tbody></tbody><tfoot><tr><td colspan="5" class="total">Total</td><td colspan="2" id="periodTotal"></td></tr><tr><td colspan="7"><a href="#addEntry" class="btn btn-primary btn-lg" data-toggle="modal">Add Entry</a></td></tr></tfoot></table>');
 
-			success: function(response) {
-				var html = "";
-				var total = 0;
-				var mins = 0;
-				$('#workevents').remove();
-				$('#workeventTable').append('<table class="table table-striped table-bordered tablesorter" cellspacing="0" cellpadding="0" id="workevents"><thead><tr><th>Date</th><th>Day</th><th>Category</th><th>Start</th><th>End</th><th>Hour\'s Worked</th><th>Modify Entry</th></tr></thead><tbody></tbody><tfoot><tr><td colspan="5" class="total">Total</td><td colspan="2" id="periodTotal"></td></tr><tr><td colspan="7"><a href="#addEntry" class="btn btn-primary btn-lg" data-toggle="modal">Add Entry</a></td></tr></tfoot></table>');
-	
-				for (i in response) {
-					var duration = response[i].duration.split(':');
-					total += parseInt(duration[0]);
-					mins += parseInt(duration[1]);
-					if (mins >= 60) {
-						mins -= 60;
-						total += 1
-					}
-					time.categories();
-					var date = new Date(response[i].start_date);
-					var day = time.weekday[date.getUTCDay()];
-					var category = $.grep(time.cats, function(e) {return e.id == response[i].category});
-					$('#workevents > tbody').append("<tr><td>" + response[i].start_date + "</td><td>" + day + "</td><td>" + category['0'].name + "</td><td>" + response[i].start + "</td><td>" + response[i].end + "</td><td>" + response[i].duration + "</td><td><button href='#updateEntry' class='btn btn-warning' name='?/time/updateForm/"+ response[i].id +"' id='modify' data-toggle='modal'>Modify</button> <a href='?/time/delete/" + response[i].id + "' class='btn btn-danger deleteButton'>Delete</button></td></tr>");
+			for (i in response) {
+				var duration = response[i].duration.split(':');
+				total += parseInt(duration[0]);
+				mins += parseInt(duration[1]);
+				if (mins >= 60) {
+					mins -= 60;
+					total += 1
 				}
-				//$('#workevents > tbody').html(html);
-				$('#periodTotal').html(total + ' Hours ' + mins + " Minutes");
-				$('#workevents').tablesorter({sortList: [[0,0], [3,0]]});
-			},
-
-			error: function(response)  {
-				console.log(response);
-
+				time.categories();
+				var date = new Date(response[i].start_date);
+				var day = time.weekday[date.getUTCDay()];
+				var category = $.grep(time.cats, function(e) {return e.id == response[i].category});
+				$('#workevents > tbody').append("<tr><td>" + response[i].start_date + "</td><td>" + day + "</td><td>" + category['0'].name + "</td><td>" + response[i].start + "</td><td>" + response[i].end + "</td><td>" + response[i].duration + "</td><td><button href='#updateEntry' class='btn btn-warning' name='?/time/updateForm/"+ response[i].id +"' id='modify' data-toggle='modal'>Modify</button> <a href='?/time/delete/" + response[i].id + "' class='btn btn-danger deleteButton'>Delete</button></td></tr>");
 			}
+			//$('#workevents > tbody').html(html);
+			$('#periodTotal').html(total + ' Hours ' + mins + " Minutes");
+			$('#workevents').tablesorter({sortList: [[0,0], [3,0]]});
+			$('#loading').modal('hide');
+			$('.modal-backdrop').remove();
+		});
+		payperiod.error(function(response)  {
+			console.log(response);
+
 		});
 	},
 	populate_categories : function() {
@@ -115,22 +102,13 @@ var time = {
 		data.clocked_in = $('#on_campus').prop('checked');
 		data = $.param(data);
 		$('#addEntry').modal('hide');
-		$.ajax({
-			url: time.config.url  + 'workevent/add/',
-			method: 'POST',
-			data: data,
-			beforeSend: function (request) {
-				request.setRequestHeader("AUTHENTICATE", time.config.token);
-			},
-
-			success: function(response) {
-				time.populate_table();			
-			},
-
-			error: function(response) {
+		var add = time.config.ajax(time.config.url + 'workevent/add/', 'post', data);
+		add.success(function(response) {
+				time.populate_table();	
+			});
+		add.error(function(response) {
 				console.log('Error');
-			}
-		});	
+			});
 	},
 	delete : function(id) {
 		$.post(time.config.url + 'workevent/delete/' + id + '/');
@@ -151,24 +129,12 @@ var time = {
 		delete data.updateId;
 		data = $.param(data);
 		$('#updateEntry').modal('hide');
-		$.ajax({
-			url: time.config.url + 'workevent/update/' + id + '/',
-			method: 'POST',
-			data: data,
-			beforeSend: function (request) {
-				request.setRequestHeader("AUTHENTICATE", time.config.token);
-			},
-
-			success: function(response) {
-				time.populate_table();
-				
-				
-				
-			},
-
-			error: function(response) {
-				console.log('Error');
-			}
+		var update = time.config.ajax(time.config.url + 'workevent/update/' + id + '/', 'post', data);
+		update.success(function(response) {
+			time.populate_table();
+		});
+		update.error(function(response) {
+			console.log('Error');
 		});
 	},
 	updateForm : function(id) {

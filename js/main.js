@@ -52,6 +52,22 @@ var main = {
         this.func = '';
         this.variables = [];
     },
+    ajax : function(url, method, data, async) {
+        $('#loading').modal('show');
+        if (async !== false) {
+            async = true;
+        }
+        return $.ajax({
+            url: url,
+            method: method,
+            data: data,
+            dataType: 'json',
+            async: async,
+            beforeSend: function (request) {
+                request.setRequestHeader("AUTHENTICATE", main.token);
+            },
+        });
+    },
 	home : {
         main : function() {
             $('#content').html('<div class="jumbotron"><div class="container"><h1>Washtenaw Community College</h1><p>The New and Improved BOS / CIS Web Application Portal.</p></div></div>');
@@ -92,4 +108,3 @@ $('body').on('click', 'button', function() {
         main.routes($(this).attr('name'));
     }
 });
-

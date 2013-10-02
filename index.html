@@ -138,7 +138,7 @@
               </div>
               <div class="modal-body">
                 <div id="recoverErrorMsg"></div>
-                <form class="form" role="form" id="recoveryForm">
+                <form class="form" role="form" id="recoveryForm" method="post" action="?/auth/recovery">
                   <div class="form-group">
                     <label for="end_time">Username</label>
                     <input type="text" class="form-control" name="username" id="username_reset" />
@@ -146,7 +146,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="Submit" id="recoverSubmit" class="btn btn-primary">Recover Password</button>
+                <input type="Submit" id="recoverSubmit" class="btn btn-primary" value="Recover Password" />
               </form>
               </div>
           </div><!-- /.modal-content -->
@@ -160,7 +160,7 @@
               </div>
               <div class="modal-body">
                 <div id="errorMsg"></div>
-                <form class="form" role="form" id="resetForm">
+                <form class="form" role="form" id="resetForm" method="post" action="?/auth/pwrdReset">
                   <div class="form-group">
                     <label for="end_time">New Password</label>
                     <input type="password" class="form-control" name="password" id="password_reset" />
@@ -171,11 +171,16 @@
                   </div>
               </div>
               <div class="modal-footer">
-                <button type="Submit" id="resetSubmit" class="btn btn-primary">Reset Password</button>
+                <input type="Submit" id="resetSubmit" class="btn btn-primary" value="Reset Password" />
               </form>
               </div>
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <div class="modal fade" id="loading">
+        <div class="modal-dialog">
+            <img src="images/loading.gif">
+        </div>
     </div><!-- /.modal -->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

@@ -10,6 +10,8 @@ table td a {display:block; width:100%;}
 table .total {text-align:right; font-weight:bold;}
 #payroll_dates {font-size:.8em;}
 
+#loading .modal-dialog {text-align: center; margin-top:300px;}
+
 .highlight {background-color:#ffff00;}
 
 .deleteButton {width:67px;}
