@@ -50,7 +50,7 @@ var time = {
 					var date = new Date(response[i].start_date);
 					var day = time.weekday[date.getUTCDay()];
 					var category = $.grep(time.cats, function(e) {return e.id == response[i].category});
-					$('#workevents > tbody').append("<tr><td>" + response[i].start_date + "</td><td>" + day + "</td><td>" + category['0'].name + "</td><td>" + response[i].start + "</td><td>" + response[i].end + "</td><td>" + response[i].duration + "</td><td><button href='#updateEntry' class='btn btn-primary' name='?/time/updateForm/"+ response[i].id +"' id='modify' data-toggle='modal'>Modify</button><a href='?/time/delete/" + response[i].id + "' class='btn btn-danger deleteButton'>Delete</button></td></tr>");
+					$('#workevents > tbody').append("<tr><td>" + response[i].start_date + "</td><td>" + day + "</td><td>" + category['0'].name + "</td><td>" + response[i].start + "</td><td>" + response[i].end + "</td><td>" + response[i].duration + "</td><td><button href='#updateEntry' class='btn btn-warning' name='?/time/updateForm/"+ response[i].id +"' id='modify' data-toggle='modal'>Modify</button> <a href='?/time/delete/" + response[i].id + "' class='btn btn-danger deleteButton'>Delete</button></td></tr>");
 				}
 				//$('#workevents > tbody').html(html);
 				$('#periodTotal').html(total + ' Hours ' + mins + " Minutes");

@@ -98,7 +98,7 @@ var admin = {
                 day.setDate(day.getDate()+1);
                 html += '</td>';
             }
-            var e_date = new Date();
+            var e_date = new Date(s_date);
             e_date.setDate(s_date.getDate() + 7);
             var endM = e_date.getUTCMonth() + 1;
             var endD = e_date.getUTCDate();

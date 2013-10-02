@@ -53,10 +53,9 @@ var main = {
         this.variables = [];
     },
 	home : {
-		init : function() {
-
-		}
-
+        main : function() {
+            $('#content').html('<div class="jumbotron"><div class="container"><h1>Washtenaw Community College</h1><p>The New and Improved BOS / CIS Web Application Portal.</p></div></div>');
+        }
 	},
 	time : time,
 	auth : auth,
@@ -71,16 +70,18 @@ var main = {
 main.init();
 
 $('body').on('click', 'a', function(e) {
-	if ($(this).attr('data-toggle') == 'modal') {
+	if ($(this).attr('data-toggle') == 'modal' || $(this).attr('data-toggle') == 'dropdown' || $(this).attr('class') == 'accordion-toggle') {
 
-	} else if ($(this).attr('data-toggle') == 'dropdown') { 
-    
-    } else if ($(this).attr('href') == '?/wiki') {
+	} else if ($(this).attr('href') == '?/wiki') {
 		document.location = 'http://bosapp.wccnet.edu/wiki';
 	} else {
     	e.preventDefault();
+        if ($('.navbar-toggle').is(":visible")) {
+            $('.navbar-toggle').click();
+        }
     	main.routes($(this).attr('href'));
     }
+
 });
 $('body').on('submit', 'form', function(e) {
     e.preventDefault();
