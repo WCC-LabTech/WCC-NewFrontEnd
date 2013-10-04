@@ -96,6 +96,7 @@ var time = {
 	},
 	addEntry : function() {
 		var form = $('#entryForm').serializeArray();
+        $('#entryForm').trigger('reset');
 		var data = {};
 		for (i in form) {
 			data[form[i].name] = form[i].value;
