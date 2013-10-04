@@ -90,7 +90,9 @@ $('body').on('click', 'a', function(e) {
 
 	} else if ($(this).attr('href') == '?/wiki') {
 		document.location = 'http://bosapp.wccnet.edu/wiki';
-	} else {
+	} else if ($(this).attr('href').indexOf('mailto') > -1) {
+        
+    } else {
     	e.preventDefault();
         if ($('.navbar-toggle').is(":visible")) {
             $('.navbar-toggle').click();
