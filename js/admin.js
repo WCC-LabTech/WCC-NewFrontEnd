@@ -20,7 +20,7 @@ var admin = {
             start_date = new Date(payperiod[0].start + "T04:00:00Z");
             $.get(admin.views + 'home.html', function(html) {
                 $('#content').html(html);
-                $.get(admin.config.url + 'report/workevent/payperiod/' + period + '/', function(response) {
+                $.getJSON(admin.config.url + 'report/workevent/payperiod/' + period + '/', function(response) {
                     var html = admin.payroll_table(response, start_date);
                     $('#payroll').html(html);
                     $('#payrollTable').tablesorter({sortList: [[0,0]]});

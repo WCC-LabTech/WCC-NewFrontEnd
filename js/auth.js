@@ -28,6 +28,8 @@ var auth = {
         		if (data.status == 403) {
         			$('#loginError').html("Invalid Username / Password");
         		}
+        		$('#loading').modal('hide');
+				$('.modal-backdrop').remove();
         	}
         });
 	},
@@ -35,6 +37,9 @@ var auth = {
         localStorage['userId'] = null;
         localStorage['token'] = null;
         localStorage['loggedIn'] = null;
+        auth.config.token = null;
+        auth.config.userId = 0;
+        auth.config.loggedIn = false;
     },
 	loggedIn : function() {
 		var getUser = auth.config.ajax(auth.config.url + 'user/' + auth.config.userId + '/', 'get');

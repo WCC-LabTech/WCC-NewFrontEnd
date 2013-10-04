@@ -108,3 +108,7 @@ $('body').on('click', 'button', function() {
         main.routes($(this).attr('name'));
     }
 });
+
+/*watch(main, "token", function(){
+    $('#test').html(main.token);
+})*/
