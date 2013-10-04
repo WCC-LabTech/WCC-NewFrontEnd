@@ -11,12 +11,14 @@ var time = {
 			6 : "Saturday",
 	},
 	categories : function() {
-		var cats = time.config.ajax(time.config.url + 'category/', 'get', '', false);
-		cats.success(function(response) {
-			time.cats = response;
-		});
+        var cats = time.config.ajax(time.config.url + 'category/', 'get', '', false);
+ 		cats.success(function(response) {
+    	    time.cats = response;
+	    });
+        
 	},
 	populate_table : function() {
+        time.categories();
 		var payperiod = time.config.ajax(time.config.url + 'workevent/payperiod/' + time.current_period + '/', 'get');
 		payperiod.success(function(response) {
 			var html = "";
@@ -33,7 +35,6 @@ var time = {
 					mins -= 60;
 					total += 1
 				}
-				time.categories();
 				var date = new Date(response[i].start_date);
 				var day = time.weekday[date.getUTCDay()];
 				var category = $.grep(time.cats, function(e) {return e.id == response[i].category});
