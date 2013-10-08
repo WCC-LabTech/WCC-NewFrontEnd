@@ -19,6 +19,7 @@ var time = {
 	},
 	populate_table : function() {
         time.categories();
+        var sort = false;
 		var payperiod = time.config.ajax(time.config.url + 'workevent/payperiod/' + time.current_period + '/', 'get');
 		payperiod.success(function(response) {
 			var html = "";
@@ -28,6 +29,7 @@ var time = {
 			$('#workeventTable').append('<table class="table table-striped table-bordered tablesorter" cellspacing="0" cellpadding="0" id="workevents"><thead><tr><th>Date</th><th>Day</th><th>Category</th><th>Start</th><th>End</th><th>Hour\'s Worked</th><th>Modify Entry</th></tr></thead><tbody></tbody><tfoot><tr><td colspan="5" class="total">Total</td><td colspan="2" id="periodTotal"></td></tr><tr><td colspan="7"><a href="#addEntry" class="btn btn-primary btn-lg" data-toggle="modal">Add Entry</a></td></tr></tfoot></table>');
 
 			for (i in response) {
+                sort = true;
 				var duration = response[i].duration.split(':');
 				total += parseInt(duration[0]);
 				mins += parseInt(duration[1]);
@@ -42,7 +44,9 @@ var time = {
 			}
 			//$('#workevents > tbody').html(html);
 			$('#periodTotal').html(total + ' Hours ' + mins + " Minutes");
-			$('#workevents').tablesorter({sortList: [[0,0], [3,0]]});
+            if (sort === true) {
+    			$('#workevents').tablesorter({sortList: [[0,0], [3,0]]});
+            }
 			$('#loading').modal('hide');
 			$('.modal-backdrop').remove();
 		});
