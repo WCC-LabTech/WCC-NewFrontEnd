@@ -90,9 +90,7 @@ $('body').on('click', 'a', function(e) {
 
 	} else if ($(this).attr('href') == '?/wiki') {
 		document.location = 'http://bosapp.wccnet.edu/wiki';
-	} else if ($(this).attr('href').indexOf('mailto') > -1) {
-        
-    } else {
+	} else {
     	e.preventDefault();
         if ($('.navbar-toggle').is(":visible")) {
             $('.navbar-toggle').click();
@@ -101,16 +99,20 @@ $('body').on('click', 'a', function(e) {
     }
 
 });
+
 $('body').on('submit', 'form', function(e) {
     e.preventDefault();
     main.routes($(this).attr('action'));
 });
+
 $('body').on('click', 'button', function() {
     if ($(this).attr('name')) {
         main.routes($(this).attr('name'));
     }
 });
 
-/*watch(main, "token", function(){
+/*
+watch(main, "token", function(){
     $('#test').html(main.token);
-})*/
+});
+*/

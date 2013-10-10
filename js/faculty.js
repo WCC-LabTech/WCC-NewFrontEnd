@@ -32,7 +32,7 @@ var faculty = {
                         } else {
                             response[i].fields.modify = '<a href="?/faculty/completeRequest/' + response[i].pk +'" id="completeRequest" class="btn btn-default">Complete</a>';
                         }
-                        $('#requestList > tbody').append('<tr><td>'+response[i].fields.due_date+'</td><td>'+faculty.labtechs[response[i].fields.labtech_Name]+'</td><td>'+response[i].fields.request_Type+'</td><td>'+response[i].fields.subject+'</td><td>'+response[i].fields.request_status+'</td><td>'+response[i].fields.modify+'</td></tr>');
+                        $('#requestList > tbody').append('<tr href="#description" onclick="$(\'#requestDesc\').html(\'' + response[i].fields.description + '\');" data-toggle="modal"><td>'+response[i].fields.due_date+'</td><td>'+faculty.labtechs[response[i].fields.labtech_Name]+'</td><td>'+response[i].fields.request_Type+'</td><td>'+response[i].fields.subject+'</td><td>'+response[i].fields.request_status+'</td><td>'+response[i].fields.modify+'</td></tr>');
                     }
 
                 }
