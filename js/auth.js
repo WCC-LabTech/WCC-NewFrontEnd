@@ -40,6 +40,7 @@ var auth = {
         auth.config.token = null;
         auth.config.userId = 0;
         auth.config.loggedIn = false;
+        window.location.replace('http://bosapp.wccnet.edu');
     },
 	loggedIn : function() {
 		var getUser = auth.config.ajax(auth.config.url + 'user/' + auth.config.userId + '/', 'get');
@@ -87,7 +88,7 @@ var auth = {
 		}
 		if (id == 4) {
 			var nav = $('nav');
-			var html = '<ul class="nav navbar-nav navbar-right"><li id="admin" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="?/admin/main" id="payrollLink">Payroll</a></li><li><a href="#" id="reports">Reports</li><li><a href="?/lotto/admin">Lotto Admin</a></li></ul></li></ul>';
+			var html = '<ul class="nav navbar-nav navbar-right"><li id="admin" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="?/admin/main" id="payrollLink">Payroll</a></li><li><a href="#" id="reports">Reports</li><li><a href="?/lotto/admin">Lotto Admin</a></li><li><a href="?/admin/email">Email</li></ul></li></ul>';
 			nav.children('.collapse').append(html);
 			
 		}

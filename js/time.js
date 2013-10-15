@@ -124,6 +124,7 @@ var time = {
 	update : function() {
 		var id = $('#updateId').val();
 		var form = $('#updateForm').serializeArray();
+        $('#updateForm').trigger('reset');
 		var data = {};
 		for (i in form) {
 			data[form[i].name] = form[i].value;

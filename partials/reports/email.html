@@ -1,0 +1,19 @@
+<div class="email">
+    <div id="formMessage"></div>
+    <form role="form" id="emailForm" method= "post" action="?/admin/sendEmail">
+        <div class="form-group">
+            <label for="group">Email Group</label>
+            <select id="groupSelect" name="group" class="form-control">
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" class="form-control" name="subject">
+        </div>
+        <div class="form-group">
+            <label for="body">Message</label>
+            <textarea class="form-control" name="body"></textarea>
+        </div>
+        <input type="submit" class="btn btn-primary" name="submit" value="Send Email" />
+    </form>
+</div>

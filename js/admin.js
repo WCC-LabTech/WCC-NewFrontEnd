@@ -132,5 +132,28 @@ var admin = {
         html += '</tbody><tfoot></tfoot></table>';
         return html;
 
+    },
+    email: function() {
+        $.get(admin.views + 'email.html', function(response) {
+            $('#content').html(response);
+            $.getJSON(admin.config.url + 'email/groups/', function(groups) {
+                $.each(groups.groups, function() {
+                    $('#groupSelect').append($("<option></option>").attr('value', this.id).text(this.name));
+                });
+            });
+        });
+    },
+    sendEmail: function() {
+        var form = $('#emailForm').serializeArray();
+        var data = {};
+        for (i in form) {
+            data[form[i].name] = form[i].value;
+        }
+ 
+        data = $.param(data);
+        var send = admin.config.ajax(admin.config.url + 'email/send_email/', 'post', data);
+        send.success(function() {
+            $('#formMessage').html('Your email has been sent');
+        });
     }
 }
