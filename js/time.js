@@ -56,24 +56,24 @@ var time = {
 		});
 	},
 	populate_categories : function() {
-		$.get(time.config.url + 'category/', function(response) {
+		$.getJSON(time.config.url + 'category/', function(response) {
 			var options = $('#category');
 			var options_update = $('#category_update');
-			$.each(response, function () {
-				if (this.is_project != true) { 
-         			options.append($("<option />").val(this.id).text(this.name));
-         			options_update.append($("<option />").val(this.id).text(this.name));
-         		}
-     		});
+            for (i in response) {
+                if (response[i].is_project != true) {
+                    options.append($("<option />").val(response[i].id).text(response[i].name));
+                    options_update.append($("<option />").val(response[i].id).text(response[i].name));
+                }
+            }
      		options.append($("<optgroup />").attr('label', 'Projects'));
      		options_update.append($("<optgroup />").attr('label', 'Projects'));
-     		$.each(response, function () {
-				if (this.is_project == true) { 
-         			options.append($("<option />").val(this.id).html("&nbsp;&nbsp;&nbsp;&nbsp;"+this.name));
-         			options_update.append($("<option />").val(this.id).html("&nbsp;&nbsp;&nbsp;&nbsp;"+this.name));
-         		}
-     		});
-
+     		
+            for (i in response) {
+                if (response[i].is_project == true) {
+                    options.append($("<option />").val(response[i].id).text(response[i].name));
+                    options_update.append($("<option />").val(response[i].id).text(response[i].name));
+                }
+            }
 		});
 	},
 	main : function() {
@@ -99,7 +99,8 @@ var time = {
 		
 	},
 	addEntry : function() {
-		var form = $('#entryForm').serializeArray();
+		console.log("BLAH");
+        var form = $('#entryForm').serializeArray();
         $('#entryForm').trigger('reset');
 		var data = {};
 		for (i in form) {

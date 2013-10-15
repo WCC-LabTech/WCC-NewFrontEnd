@@ -8,8 +8,8 @@
         		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         		<h4 class="modal-title">Add Entry</h4>
       		</div>
+            <form class="form" role="form" id="entryForm" method="post" action="?/time/addEntry">
       		<div class="modal-body">
-        		<form class="form" role="form" id="entryForm" method="post" action="?/time/addEntry">
         			<div class="form-group">
         				<label for="category">Category</label>
         				<select class="form-control" name="category" id="category">
@@ -40,9 +40,9 @@
       		</div>
       		<div class="modal-footer">
         		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        		<button type="Submit" class="btn btn-primary">Add Entry</button>
-        	</form>
+        		<input type="Submit" class="btn btn-primary" value="Add Entry" />
       		</div>
+            </form>
     	</div><!-- /.modal-content -->
   	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
@@ -54,8 +54,8 @@
         		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         		<h4 class="modal-title">Update Entry</h4>
       		</div>
+            <form class="form" role="form" id="updateForm" method="post" action="?/time/update">
       		<div class="modal-body">
-        		<form class="form" role="form" id="updateForm" method="post" action="?/time/update">
         			<div class="form-group">
         				<label for="category">Category</label>
         				<select class="form-control" name="category" id="category_update">
@@ -88,8 +88,8 @@
       		<div class="modal-footer">
         		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         		<input type="submit" id="timeUpdate" class="btn btn-primary" value="Update Entry" />
-        	</form>
       		</div>
+            </form>
     	</div><!-- /.modal-content -->
   	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
