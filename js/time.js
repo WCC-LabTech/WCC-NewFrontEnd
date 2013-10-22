@@ -114,6 +114,8 @@ var time = {
 				time.populate_table();	
 			});
 		add.error(function(response) {
+                $('#loading').modal('hide');
+                $('.modal-backdrop').remove();
 				console.log('Error');
 			});
 	},
@@ -142,6 +144,8 @@ var time = {
 			time.populate_table();
 		});
 		update.error(function(response) {
+            $('#loading').modal('hide');
+            $('.modal-backdrop').remove();
 			console.log('Error');
 		});
 	},
