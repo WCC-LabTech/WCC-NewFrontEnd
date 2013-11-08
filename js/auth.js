@@ -78,6 +78,7 @@ var auth = {
 			$('#faculty_Name').val(auth.config.userId);
 			$.get(auth.config.url + 'user/', function(response) {
 				var options = $('#labtech_Name');
+                options.append($('<option />').val("").text("No Preference"));
 				$.each(response, function () {
 					if ($.inArray(2, this.groups) != -1) { 
          				options.append($("<option />").val(this.id).text(this.first_name + ' ' + this.last_name));
@@ -88,7 +89,7 @@ var auth = {
 		}
 		if (id == 4) {
 			var nav = $('nav');
-			var html = '<ul class="nav navbar-nav navbar-right"><li id="admin" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="?/admin/main" id="payrollLink">Payroll</a></li><li><a href="#" id="reports">Reports</li><li><a href="?/lotto/admin">Lotto Admin</a></li><li><a href="?/admin/email">Email</li></ul></li></ul>';
+			var html = '<ul class="nav navbar-nav navbar-right"><li id="admin" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="?/admin/main" id="payrollLink">Payroll</a></li><li><a href="#" id="reports">Reports</li><li><a href="?/lotto/main">Lotto Admin</a></li><li><a href="?/admin/email">Email</li></ul></li></ul>';
 			nav.children('.collapse').append(html);
 			
 		}

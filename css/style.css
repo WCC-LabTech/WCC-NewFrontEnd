@@ -1,4 +1,5 @@
 body {background-color:#2B6A47;}
+.clearB {clear:both;}
 
 .wrapper {background-color:#fff; box-shadow:-2px 2px 8px #000;}
 
@@ -16,6 +17,19 @@ table .total {text-align:right; font-weight:bold;}
 
 .deleteButton {width:67px;}
 .email {max-width:75%; margin: 10px auto;}
+
+.admin_periods_nav {margin-bottom:10px;}
+.details {font-size:7pt; font-weight:bold;}
+
+/* Staff Lotto */
+#lContent {margin-left:200px; max-width:940px}
+.subnav {width:200px; float:left;}
+
+.courses {margin:10px;}
+
+.profiles {}
+.profiles .users {width:200px; float:left;}
+.profiles .profile {margin-left: 200px; max-width:740px;}
 
 /*.userList{position:absolute; left:15px; top:100px; min-height:100px;}*/
 

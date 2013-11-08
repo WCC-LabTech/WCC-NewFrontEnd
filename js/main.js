@@ -14,6 +14,7 @@ var main = {
         this.faculty.config = this;
         this.faculty.init();
         this.admin.config = this;
+        this.lotto.config = this;
 		if (this.loggedIn === 'true') {
 			this.loggedIn = true;
 			this.auth.loggedIn();
@@ -77,6 +78,7 @@ var main = {
 	auth : auth,
     faculty : faculty,
     admin : admin,
+    lotto : lotto,
     error : {
         main : function(code) {
             console.log(code + ': There was an error. Controller: ' + this.controller + ', Function: ' + this.func);

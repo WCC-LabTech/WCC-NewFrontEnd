@@ -155,5 +155,17 @@ var admin = {
         send.success(function() {
             $('#formMessage').html('Your email has been sent');
         });
+    },
+    addCat: function() {
+        var form = $('#catForm').serializeArray();
+        var data = {};
+        for (i in form) {
+            data[form[i].name] = form[i].value;
+        }
+        data = $.param(data);
+        var send = admin.config.ajax(admin.config.url + 'payperiod/add/', 'post', data);
+        send.success(function() {
+
+        });
     }
 }

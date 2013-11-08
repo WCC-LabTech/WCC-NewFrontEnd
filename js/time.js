@@ -101,14 +101,18 @@ var time = {
 	addEntry : function() {
 		console.log("BLAH");
         var form = $('#entryForm').serializeArray();
-        $('#entryForm').trigger('reset');
 		var data = {};
 		for (i in form) {
 			data[form[i].name] = form[i].value;
 		}
-		data.clocked_in = $('#on_campus').prop('checked');
+        if ($('#on_campus').prop('checked')) {
+    		data.clocked_in = true;
+        } else {
+            data.clocked_in = false;
+        }
 		data = $.param(data);
 		$('#addEntry').modal('hide');
+        $('#entryForm').trigger('reset');
 		var add = time.config.ajax(time.config.url + 'workevent/add/', 'post', data);
 		add.success(function(response) {
 				time.populate_table();	
@@ -127,18 +131,24 @@ var time = {
 	update : function() {
 		var id = $('#updateId').val();
 		var form = $('#updateForm').serializeArray();
-        $('#updateForm').trigger('reset');
 		var data = {};
 		for (i in form) {
 			data[form[i].name] = form[i].value;
 		}
-		data.clocked_in = $('#on_campus_update').prop('checked');
+		//data.clocked_in = $('#on_campus_update').prop('checked');
+        if ($('#on_campus_update').prop('checked')) {
+            data.clocked_in = true;
+        } else {
+            data.clocked_in = false;
+        }
+        console.log(data);
 		delete data.hour;
 		delete data.minute;
 		delete data.meridian;
 		delete data.updateId;
 		data = $.param(data);
 		$('#updateEntry').modal('hide');
+        $('#entryForm').trigger('reset');
 		var update = time.config.ajax(time.config.url + 'workevent/update/' + id + '/', 'post', data);
 		update.success(function(response) {
 			time.populate_table();
