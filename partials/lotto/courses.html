@@ -2,7 +2,17 @@
     <form role="form" id="addCourse" method="post" action="?/lotto/addCourse">
         <div class="form-group">
             <label>Start Date</label>
-            <input type="text" class="form-control" name="start_date" />
+            <div class="input-group addon" id="start_date">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                <input data-format="yyyy-MM-dd" type="text" class="form-control" name="start_date" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label>End Date</label>
+            <div class="input-group addon" id="end_date">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                <input data-format="yyyy-MM-dd" type="text" class="form-control" name="end_date" />
+            </div>
         </div>
         <div class="form-group">
             <label>Days of Week</label>
@@ -10,11 +20,17 @@
         </div>
         <div class="form-group">
             <label>Start Time</label>
-            <input type="text" class="form-control" name="start_time" />
+            <div class="input-group addon" id="start_time">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                <input data-format="hh:mm" type="text" class="form-control" name="start_time" />
+            </div>
         </div>
         <div class="form-group">
             <label>End Time</label>
-            <input type="text" class="form-control" name="end_time" />
+            <div class="input-group addon" id="end_time">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                <input data-format="hh:mm" type="text" class="form-control" name="end_time" />
+            </div>
         </div>
         <div class="form-group">
             <label>CRN</label>
@@ -36,3 +52,19 @@
         <button type="submit" class="btn btn-primary" name="submit">Add Course</button>
     </form>
 </div>
+<script>
+$('#start_date').datetimepicker({
+    pickTime: false,
+});
+$('#end_date').datetimepicker({
+    pickTime: false,
+});
+$('#start_time').datetimepicker({
+    pickDate: false,
+    pick12HourFormat: true,
+});
+$('#end_time').datetimepicker({
+    pickDate: false,
+    pick12HourFormat: true,
+});
+</script>

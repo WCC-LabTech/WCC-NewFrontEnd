@@ -39,11 +39,16 @@ var lotto = {
             data[form[i].name] = form[i].value;
         }
         data = $.param(data);
-        var submit = lotto.config.ajax(lotto.config.url + 'lotto/addCourse', 'post', data);
-        console.log(submit);
+        var submit = lotto.config.ajax(lotto.config.url + 'lotto/setCourse/', 'post', data);
+        $('#loading').modal('hide');
+        $('.modal-backdrop').remove();
     },
     showProfile : function(data) {
-        var pk = data[0];
-        console.log(pk);
+        var post = {'instructor' : data[0]};
+        post = $.param(post);
+        var profile = lotto.config.ajax(lotto.config.url + 'lotto/getUserSkill/', 'post', post);
+        profile.success(function(data) {
+            console.log(data);
+        });
     }
 }
