@@ -15,6 +15,7 @@ var main = {
         this.faculty.init();
         this.admin.config = this;
         this.lotto.config = this;
+        this.inventory.config = this;
 		if (this.loggedIn === 'true') {
 			this.loggedIn = true;
 			this.auth.loggedIn();
@@ -79,9 +80,10 @@ var main = {
     faculty : faculty,
     admin : admin,
     lotto : lotto,
+    inventory : inv,
     error : {
         main : function(code) {
-            console.log(code + ': There was an error. Controller: ' + this.controller + ', Function: ' + this.func);
+            console.log(code + ': There was an error. Controller: ' + main.controller + ', Function: ' + main.func);
         }
     }
 }
