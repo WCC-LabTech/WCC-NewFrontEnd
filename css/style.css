@@ -33,6 +33,13 @@ table .total {text-align:right; font-weight:bold;}
 
 /*.userList{position:absolute; left:15px; top:100px; min-height:100px;}*/
 
+
+/* Footer */
+
+.footer {height:50px; border-top: 1px solid #ddd;}
+.footer p {position:absolute; right:25px; bottom:10px;}
+
+
 @media only screen and (max-device-width: 768px) {
 	/*.navbar {position:fixed; top:0; left:0; width:100%;}*/
 

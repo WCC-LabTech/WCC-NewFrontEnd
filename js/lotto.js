@@ -62,7 +62,7 @@ var lotto = {
             var ul = $('<ul class="list-group"></ul>');
 
             $.each(data, function() {
-                ul.append($('<li class="list-group-item"></li>').html(this.course.name + '<span class="pull-right">X</span>'));
+                ul.append($('<li class="list-group-item"></li>').html(this.course.name + '<span class="pull-right glyphicon glyphicon-remove-circle"></span>'));
             });
             skills.append(ul);
         });
@@ -101,7 +101,7 @@ var lotto = {
             users.success(function(data) {
                 for (i in data.courses) {
                     html += '<li><a href="?/lotto/showEligible/'+data.courses[i].pk+'">' + data.courses[i].name + ' ' + data.courses[i].crn + '</a><ul class="nav nav-pills">';
-                    html += '<li><a class="btn btn-danger btn-xs" style="padding:1px 5px;" href="?/lotto/deleteCourse/'+data.courses[i].pk+'">X</a></li></ul></li>'
+                    html += '<li><a class="btn btn-danger btn-xs glyphicon glyphicon-remove-circle" style="padding:1px 5px;" href="?/lotto/deleteCourse/'+data.courses[i].pk+'"></a></li></ul></li>'
                 }
                 $('#loading').modal('hide');
                 $('.modal-backdrop').remove();
@@ -111,6 +111,7 @@ var lotto = {
         });
     },
     showEligible : function(course) {
+        lotto.course = course[0];
         var data = {skill : course[0]};
         var users = lotto.config.ajax(lotto.config.url + 'lotto/getSkill/', 'post', data);
         $('.profile').html('');
@@ -140,7 +141,9 @@ var lotto = {
         send.success(function() {
             $('#loading').modal('hide');
             $('.modal-backdrop').remove();
-            lotto.showCourses();
+            var course = [];
+            course[0] = lotto.course;
+            lotto.showEligible(course);
         });
     },
     deleteCourse : function(course) {
