@@ -59,12 +59,10 @@ var lotto = {
         var profile = lotto.config.ajax(lotto.config.url + 'lotto/getUserSkill/', 'post', post);
         profile.success(function(data) {
             var skills = $('.skillList');
-            var ul = $('<ul></ul>');
-            //console.log(data);
+            var ul = $('<ul class="list-group"></ul>');
 
             $.each(data, function() {
-                console.log(this);
-                ul.append($('<li></li>').html(this.course.name));
+                ul.append($('<li class="list-group-item"></li>').html(this.course.name + '<span class="pull-right">X</span>'));
             });
             skills.append(ul);
         });
@@ -91,6 +89,9 @@ var lotto = {
        }
        data = $.param(data);
        var submit = lotto.config.ajax(lotto.config.url + 'lotto/setUserSkill/', 'post', data);
+       var user = [];
+       user[0] = lotto.user;
+       lotto.showProfile(user);
     },
     showCourses : function() {
         $.get(lotto.partials + 'profiles.html', function(data) {
@@ -99,8 +100,8 @@ var lotto = {
             var users = lotto.config.ajax(lotto.config.url + 'lotto/getCourseList/', 'get');
             users.success(function(data) {
                 for (i in data.courses) {
-                    console.log(data.courses[i]);
-                    html += '<li><a href="?/lotto/showEligible/'+data.courses[i].pk+'">' + data.courses[i].name + ' ' + data.courses[i].crn + '</a></li>';
+                    html += '<li><a href="?/lotto/showEligible/'+data.courses[i].pk+'">' + data.courses[i].name + ' ' + data.courses[i].crn + '</a><ul class="nav nav-pills">';
+                    html += '<li><a class="btn btn-danger btn-xs" style="padding:1px 5px;" href="?/lotto/deleteCourse/'+data.courses[i].pk+'">X</a></li></ul></li>'
                 }
                 $('#loading').modal('hide');
                 $('.modal-backdrop').remove();
@@ -117,7 +118,7 @@ var lotto = {
             var form = $('<form role="form" id="setCourse" class="form" method="post" action="?/lotto/setCourse"></form>');
             var ul = $('<ul class="list-group"></ul>')
             for (i in list.users) {
-                ul.append('<li class="list-group-item"><label for="user'+list.users[i].pk+'""><input type="radio" name="user" id="user'+list.users[i].pk+'" value="'+list.users[i].pk+'" /> ' + list.users[i].first_name + '</label></li>');
+                ul.append('<li class="list-group-item"><label for="user'+list.users[i].pk+'""><input type="radio" name="user" id="user'+list.users[i].pk+'" value="'+list.users[i].pk+'" /> ' + list.users[i].first_name + ' ' + list.users[i].last_name + '</label></li>');
             }
             ul.append('<li class="list-group-item"><input type="submit" name="submit" class="btn btn-primary" value="Assign To Course" />')
             form.append('<input type="hidden" name="course" value="'+course+'" />');
@@ -141,5 +142,16 @@ var lotto = {
             $('.modal-backdrop').remove();
             lotto.showCourses();
         });
+    },
+    deleteCourse : function(course) {
+        var data = {course : course[0]};
+        lotto.config.ajax(lotto.config.url + 'lotto/deleteCourse/', 'post', data);
+        lotto.showCourses();
+    },
+
+    deleteSkill : function(skill) {
+        var data = {skill : skill[0]};
+        lotto.config.ajax(lotto.config.url + 'lotto/deleteSkill/', 'post', data);
+        lotto.profiles();
     }
 }
