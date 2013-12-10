@@ -1,4 +1,7 @@
 body {background-color:#2B6A47;}
+
+h2 {text-transform:capitalize;}
+
 .clearB {clear:both;}
 
 .wrapper {background-color:#fff; box-shadow:-2px 2px 8px #000;}
@@ -32,6 +35,12 @@ table .total {text-align:right; font-weight:bold;}
 .profiles .profile {margin-left: 200px; max-width:740px;}
 
 /*.userList{position:absolute; left:15px; top:100px; min-height:100px;}*/
+
+/* Inventory */
+.invStats {margin-left:10px;}
+.invStats .group {}
+.invStats .group .name {display:inline;}
+.invStats .group .value {display:inline;}
 
 
 /* Footer */
