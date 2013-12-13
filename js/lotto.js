@@ -115,7 +115,7 @@ var lotto = {
     showEligible : function(course) {
         lotto.course = course[0];
         var data = {skill : course[0]};
-        var users = lotto.config.ajax(lotto.config.url + 'lotto/getSkill/', 'post', data);
+        var users = lotto.config.ajax(lotto.config.url + 'lotto/getSkillFromCourse/', 'post', data);
         $('.profile').html('');
         users.success(function(list) {
             var form = $('<form role="form" id="setCourse" class="form" method="post" action="?/lotto/setCourse"></form>');
