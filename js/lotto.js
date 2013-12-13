@@ -68,13 +68,14 @@ var lotto = {
         });
         var courses = lotto.config.ajax(lotto.config.url + 'lotto/getSkillList/', 'get');
         courses.success(function(course) {
+            console.log(course);
             var dropdown = $('<select></select>').attr('name', 'skill');
             var list = course.skills;
             console.log(list);
             $.each(list, function() {
                 dropdown.append($('<option/>', {
-                    value: this.course.pk,
-                    text: this.course.name
+                    value: this.pk,
+                    text: this.name
                     }));
             });
             $('.form-group').append(dropdown);
