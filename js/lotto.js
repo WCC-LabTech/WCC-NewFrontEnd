@@ -66,14 +66,15 @@ var lotto = {
             });
             skills.append(ul);
         });
-        var courses = lotto.config.ajax(lotto.config.url + 'lotto/getCourseList/', 'get');
+        var courses = lotto.config.ajax(lotto.config.url + 'lotto/getSkillList/', 'get');
         courses.success(function(course) {
             var dropdown = $('<select></select>').attr('name', 'skill');
-            var list = course.courses;
+            var list = course.skills;
+            console.log(list);
             $.each(list, function() {
                 dropdown.append($('<option/>', {
-                    value: this.pk,
-                    text: this.name
+                    value: this.course.pk,
+                    text: this.course.name
                     }));
             });
             $('.form-group').append(dropdown);
