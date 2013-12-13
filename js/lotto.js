@@ -62,7 +62,7 @@ var lotto = {
             var ul = $('<ul class="list-group"></ul>');
 
             $.each(data, function() {
-                ul.append($('<li class="list-group-item"></li>').html(this.course.name + '<span class="pull-right glyphicon glyphicon-remove-circle"></span>'));
+                ul.append($('<li class="list-group-item"></li>').html(this.name + '<span class="pull-right glyphicon glyphicon-remove-circle"></span>'));
             });
             skills.append(ul);
         });
