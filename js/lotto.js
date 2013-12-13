@@ -114,7 +114,7 @@ var lotto = {
     },
     showEligible : function(course) {
         lotto.course = course[0];
-        var data = {skill : course[0]};
+        var data = {course : course[0]};
         var users = lotto.config.ajax(lotto.config.url + 'lotto/getSkillFromCourse/', 'post', data);
         $('.profile').html('');
         users.success(function(list) {
