@@ -48,19 +48,20 @@ var inv = {
                 html += '</div><div id="'+i+'" class="panel-collapse collapse"><div class="panel-body">';
                 var count = 0;
                 html += '<div class="row">';
+                //console.log(data[i]);
                 for (j in data[i]) {
-                    console.log(data[i]);
-                    console.log(j + ' - ' + JSON.stringify(data[i][j]));
                     if (j == 'machine_name' || j == 'id' || j == 'in_use' || j == 'IS') {continue;}
                     if (count % 6 == 0) {
                         if (count !== 0) { html += '</div>';}
                         html += '<div class="col-lg-4">';
                     }
-                    html += '<ul class=""><li class="">' + inv.formatName(j) + '</li>';
+                    html += '<ul class="specs"><li class="title">' + inv.formatName(j) + '</li>';
                     if (typeof data[i][j] == 'array' || typeof data[i][j] == 'object' && data[i][j].length > 0) {
                         html += '<div class="invStats">';
                         html += inv.itemStats(j, data[i][j]);
                         html += '</div>';
+                    } else {
+                        html += '<div class="invStats">' + data[i][j] + '</div>';
                     }
                     html += '</ul>';
 
@@ -92,30 +93,70 @@ var inv = {
                 case 'Hard_drive':
                     ret += '<div class="group">';
                     ret += '<div class="name">Storage: </div>';
-                    ret += '<div class="value">'+item.total_GB+' GB</div>';
+                    ret += '<div class="value">'+item[0].total_GB+' GB</div>';
                     ret += '</div>';
-                    if (typeof item.model == 'object') {
+                    if (typeof item[0].model == 'object') {
                         ret += '<div class="group">';
                         ret += '<div class="name">Model: </div>';
-                        ret += '<div class="value">'+item.model.name+'</div>';
+                        ret += '<div class="value">'+item[0].model.name+'</div>';
                         ret += '</div>';
                     }
                     break;
-
                 case 'Motherboard':
-                    if (typeof item.model == 'object') {
+                    if (typeof item[0].model == 'object') {
                         ret += '<div class="group">';
                         ret += '<div class="name">Model: </div>';
-                        ret += '<div class="value">'+item.model.name+'</div>';
+                        ret += '<div class="value">'+item[0].model.name+'</div>';
                         ret += '</div>';
                     }
                     break;
                 case 'RAM':
                     ret += '<div class="group">';
                     ret += '<div class="name">Memory: </div>';
-                    ret += '<div class="value">'+item.size_in_gigs+' GB</div>';
+                    ret += '<div class="value">'+item[0].size_in_gigs+' GB</div>';
                     ret += '</div>';
 
+                    break;
+                case 'location':
+                    console.log(item);
+                    ret += item;
+
+                    break;
+                case 'Optical_drive_set':
+                    if (typeof item[0].model == 'object') {
+                        ret += '<div class="group">';
+                        ret += '<div class="name">Model: </div>';
+                        ret += '<div class="value">'+item[0].model.name+'</div>';
+                        ret += '</div>';
+                    }
+                    break;
+                case 'Operating_system':
+                    if (typeof item[0].model == 'object') {
+                        ret += '<div class="group">';
+                        ret += '<div class="name">Model: </div>';
+                        ret += '<div class="value">'+item[0].model.name+'</div>';
+                        ret += '</div>';
+                    }
+                    break;
+                case 'Flash_memory':
+                    ret += '<div class="group">';
+                    ret += '<div class="name">Size: </div>';
+                    ret += '<div class="value">'+item[0].size_in_megs+' MB</div>';
+                    ret += '</div>';
+                    if (typeof item[0].model == 'object') {
+                        ret += '<div class="group">';
+                        ret += '<div class="name">Model: </div>';
+                        ret += '<div class="value">'+item[0].model.name+'</div>';
+                        ret += '</div>';
+                    }
+                    break;
+                case 'Central_processing_unit':
+                    if (typeof item[0].model == 'object') {
+                        ret += '<div class="group">';
+                        ret += '<div class="name">Model: </div>';
+                        ret += '<div class="value">'+item[0].model.name+'</div>';
+                        ret += '</div>';
+                    }
                     break;
             }
         }

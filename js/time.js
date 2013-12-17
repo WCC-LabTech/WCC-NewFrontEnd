@@ -160,7 +160,8 @@ var time = {
 		});
 	},
 	updateForm : function(id) {
-		$.get(time.config.url + 'workevent/' + id + '/', function(response) {
+		$.getJSON(time.config.url + 'workevent/' + id + '/', function(response) {
+			console.log(response);
             var s_date = new Date(response.start_dt);
             var e_date = new Date(response.end_dt);
 			$('#category_update').val(response.category);

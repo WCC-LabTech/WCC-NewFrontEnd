@@ -166,6 +166,9 @@ var admin = {
         var send = admin.config.ajax(admin.config.url + 'payperiod/add/', 'post', data);
         send.success(function() {
 
+            admin.main();
+            $('#loading').modal('hide');
+            $('.modal-backdrop').remove();
         });
     }
 }

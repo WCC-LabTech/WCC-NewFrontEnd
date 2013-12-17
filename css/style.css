@@ -37,12 +37,14 @@ table .total {text-align:right; font-weight:bold;}
 /*.userList{position:absolute; left:15px; top:100px; min-height:100px;}*/
 
 /* Inventory */
-.invStats {margin-left:10px;}
+.invStats {margin-left:10px; font-size:.9em;}
 .invStats .group {}
 .invStats .group .name {display:inline;}
 .invStats .group .value {display:inline;}
 
-
+.specs {list-style:none;}
+.specs .title {font-weight:bold;}
+.specs li {margin-left:-10px;}
 /* Footer */
 
 .footer {height:50px; border-top: 1px solid #ddd;}
