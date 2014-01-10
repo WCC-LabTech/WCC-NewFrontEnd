@@ -66,8 +66,12 @@ var auth = {
 		if (id == 1) {
 
 		}
-		if (id == 2) {
-		
+		if (id >= 2) {
+			var inv = $('#invLink');
+			var html = '<a href="" class="dropdown-toggle" data-toggle="dropdown">Inventory Management <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="?/inventory/main" id="requests">View Inventory</a></li><li><a href="?/inventory/edit" id="faculty" data-toggle="modal">Edit Inventory</a></li></ul>';
+			inv.attr('class', 'dropdown');
+			inv.html(html);
+
 		}
 		if (id == 3) {
 			var faculty = $('#facultyReq');
@@ -89,7 +93,7 @@ var auth = {
 		}
 		if (id == 4) {
 			var nav = $('nav');
-			var html = '<ul class="nav navbar-nav navbar-right"><li id="admin" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="?/admin/main" id="payrollLink">Payroll</a></li><li><a href="#" id="reports">Reports</li><li><a href="?/lotto/main">Lotto Admin</a></li><li><a href="?/admin/email">Email</li></ul></li></ul>';
+			var html = '<ul class="nav navbar-nav navbar-right"><li id="admin" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="?/admin/users">User Management</a></li><li><a href="?/admin/main" id="payrollLink">Payroll</a></li><li><a href="#" id="reports">Reports</li><li><a href="?/lotto/main">Lotto Admin</a></li><li><a href="?/admin/email">Email</li></ul></li></ul>';
 			nav.children('.collapse').append(html);
 			
 		}

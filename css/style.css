@@ -45,6 +45,13 @@ table .total {text-align:right; font-weight:bold;}
 .specs {list-style:none;}
 .specs .title {font-weight:bold;}
 .specs li {margin-left:-10px;}
+
+/* User Management */
+.actions a {display:inline; margin-left:5px;}
+
+.red {color:red;}
+
+
 /* Footer */
 
 .footer {height:50px; border-top: 1px solid #ddd;}

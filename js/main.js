@@ -90,7 +90,7 @@ var main = {
 main.init();
 
 $('body').on('click', 'a', function(e) {
-	if ($(this).attr('data-toggle') == 'modal' || $(this).attr('data-toggle') == 'dropdown' || $(this).attr('class') == 'accordion-toggle') {
+	if ($(this).attr('data-toggle') == 'modal' || $(this).attr('data-toggle') == 'dropdown' || $(this).attr('class') == 'accordion-toggle' || $(this).attr('class') == 'email') {
 
 	} else if ($(this).attr('href') == '?/wiki') {
 		document.location = 'http://bosapp.wccnet.edu/wiki';

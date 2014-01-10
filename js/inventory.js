@@ -7,6 +7,35 @@ var inv = {
             $('#content').html(data);
         });
     },
+    create: function() {
+        var form = $('#addInv').serializeArray();
+        var data = {};
+        for (i in form) {
+            data[form[i].name] = form[i].value;
+        }
+        if (data['in_use'] == 'true') {
+            data['in_use'] = true;
+        } else {
+            data['in_use'] = false;
+        }
+        var create = inv.config.ajax(inv.config.url + 'inventory/set/' + data['type'], 'post', data);
+        create.success(function() {
+            
+
+            $('#loading').modal('hide');
+            $('.modal-backdrop').remove();
+        });
+    },
+    edit: function() {
+        $.get(inv.partials + 'edit.html', function(data) {
+            $('#content').html(data);
+        });
+    },
+    loadForm: function(form) {
+        $.get(inv.partials + 'form/' + form + '.html', function(html) {
+            $('#formContent').html(html);
+        });
+    },
     form : function() {
     	$.get(inv.partials + 'form.html', function(data) {
     		$('#content').html(data);

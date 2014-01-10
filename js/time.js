@@ -162,8 +162,10 @@ var time = {
 	updateForm : function(id) {
 		$.getJSON(time.config.url + 'workevent/' + id + '/', function(response) {
 			console.log(response);
-            var s_date = new Date(response.start_dt);
-            var e_date = new Date(response.end_dt);
+			s = response.start_dt.split(/\D/);
+			d = response.end_dt.split(/\D/);
+            var s_date = new Date(s[0], --s[1], s[2], s[3], s[4]);
+            var e_date = new Date(d[0], --d[1], d[2], d[3], d[4]);
 			$('#category_update').val(response.category);
             $('#start_time_update').datetimepicker('setDate', s_date);
             $('#end_time_update').datetimepicker('setDate', e_date);

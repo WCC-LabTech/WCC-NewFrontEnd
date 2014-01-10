@@ -1,0 +1,26 @@
+<div class="row">
+	<div class="col-lg-8 col-lg-offset-2">
+		<form role="form" id="addInv" method="post" action="?/inventory/create">
+			<div class="form-group" style="text-align: center;">
+				<label class="radio-inline">
+				  <input type="radio" id="type" name="type" value="Computer"> Computer</label>
+				<label class="radio-inline">
+				  <input type="radio" id="type" name="type" value="Switch"> Switch</label>
+				<label class="radio-inline">
+				  <input type="radio" id="type" name="type" value="Firewall"> Firewall</label>
+				<label class="radio-inline">
+				  <input type="radio" id="type" name="type" value="Router"> Router</label>
+				<label class="radio-inline">
+				  <input type="radio" id="type" name="type" value="Server"> Server</label>
+			</div>
+			<div id="formContent"></div>
+		</form>
+	</div>
+</div>
+
+<script>
+$('input:radio').change(function() {
+	$('#formContent').html('');
+	inv.loadForm(this.value);
+})
+</script>
