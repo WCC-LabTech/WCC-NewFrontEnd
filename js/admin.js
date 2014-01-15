@@ -47,11 +47,16 @@ var admin = {
     },
     addUser: function() {
         var form = $('#addUser').serializeArray();
-        console.log(form);
+        
         var data = {};
         for (i in form) {
-            data[form[i].name] = form[i].value;
+            if (form[i].name === 'groups') {
+                data['groups'] = JSON.stringify($('#groups').val());
+            } else {
+                data[form[i].name] = form[i].value;
+            }
         }
+        console.log(data);
         var create = admin.config.ajax(admin.config.url + 'user/create/', 'post', data);
         create.success(function(res) {
             admin.users();
