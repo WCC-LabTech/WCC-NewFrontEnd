@@ -68,12 +68,13 @@ var inv = {
 
         var equip = inv.config.ajax(inv.config.url + 'inventory/all/' + type +'/');
         equip.success(function(data) {
+            console.log(data);
             var list = $('#accordion');
             list.empty();
             for (i in data) {
                 var html = '<div class="panel panel-default"><div class="panel-heading">';
                 html += '<h2 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#'+i+'">' + data[i].machine_name +' - ' + data[i].IS + '</a>';
-                if (data[i]['in_use']) {
+                if (data[i]['in_use'] == true || data[i]['in_use'] == 'true') {
                         html += '<span class="label label-success pull-right">In Use</span>';
                     } else {
                         html += '<span class="label label-danger pull-right">Not In Use</span>';
@@ -125,10 +126,12 @@ var inv = {
         } else {
             switch(type) {
                 case 'Hard_drive':
-                    ret += '<div class="group">';
-                    ret += '<div class="name">Storage: </div>';
-                    ret += '<div class="value">'+item[0].total_GB+' GB</div>';
-                    ret += '</div>';
+                    if (item[0].total_GB) {
+                        ret += '<div class="group">';
+                        ret += '<div class="name">Storage: </div>';
+                        ret += '<div class="value">'+item[0].total_GB+' GB</div>';
+                        ret += '</div>';
+                    }
                     if (typeof item[0].model == 'object') {
                         ret += '<div class="group">';
                         ret += '<div class="name">Model: </div>';
