@@ -68,7 +68,7 @@ var auth = {
 		}
 		if (id >= 2) {
 			var inv = $('#invLink');
-			var html = '<a href="" class="dropdown-toggle" data-toggle="dropdown">Inventory Management <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="?/inventory/main" id="requests">View Inventory</a></li><li><a href="?/inventory/edit" id="faculty" data-toggle="modal">Edit Inventory</a></li></ul>';
+			var html = '<a href="" class="dropdown-toggle" data-toggle="dropdown">Inventory Management <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="?/inventory/main" id="requests">View Inventory</a></li><li><a href="?/inventory/edit" id="faculty" data-toggle="modal">Add Devices</a></li><li><a href="?/inventory/addComp">Add Components</a></li></ul>';
 			inv.attr('class', 'dropdown');
 			inv.html(html);
 

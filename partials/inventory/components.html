@@ -1,0 +1,42 @@
+<form role="form" id="addInv" method="post" action="?/inventory/create">
+	<div class="row">
+		<div class="form-group">
+			<div class="col-sm-4 col-sm-offset-2">
+				<label class="radio">
+				  <input type="radio" id="type" name="type" value="Hard_drive"> Hard Drive</label>
+				<label class="radio">
+				  <input type="radio" id="type" name="type" value="Motherboard"> Mother Board</label>
+				<label class="radio">
+				  <input type="radio" id="type" name="type" value="RAM"> Ram</label>
+				<label class="radio">
+				  <input type="radio" id="type" name="type" value="Power_supply_unit"> Power Supply Unit</label>
+				<label class="radio">
+				  <input type="radio" id="type" name="type" value="Optical_drive"> Optical Drive Set</label>
+			</div>
+			<div class="col-sm-4 col-sm-offset-2">
+			    <label class="radio">
+				  <input type="radio" id="type" name="type" value="Operating_system"> Operating System</label>
+				<label class="radio">
+				  <input type="radio" id="type" name="type" value="Flash_memory"> Flash Memory</label>
+				<label class="radio">
+				  <input type="radio" id="type" name="type" value="Expansion_card"> Expansion Card</label>
+				<label class="radio">
+				  <input type="radio" id="type" name="type" value="Central_processing_unit"> Central Processing Unit</label>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-8 col-sm-offset-2">
+			<div id="formContent">
+
+			</div>
+		</div>
+	</div>
+</form>
+
+<script>
+$('input:radio').change(function() {
+	$('#formContent').html('');
+	inv.loadForm(this.value);
+});
+</script>

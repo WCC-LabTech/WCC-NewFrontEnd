@@ -76,7 +76,7 @@ var admin = {
             $('[name="last_name"]','#modifyUser').val(data.last_name);
             $('[name="email"]','#modifyUser').val(data.email);
             $('[name="groups"]','#modifyUser').val(data.groups);
-            $('[name="id"]','#modifyUser').val(data.id);
+            $('[name="pk"]','#modifyUser').val(data.id);
             $('#modifyUserForm').modal('show');
         });
     },
@@ -86,6 +86,7 @@ var admin = {
         for (i in form) {
             data[form[i].name] = form[i].value;
         }
+        console.log(data);
         var modify = admin.config.ajax(admin.config.url + 'user/update/', 'post', data);
         modify.success(function(res) {
             admin.users();

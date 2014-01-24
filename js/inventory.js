@@ -26,6 +26,11 @@ var inv = {
             $('.modal-backdrop').remove();
         });
     },
+    addComp: function() {
+        $.get(inv.partials + 'components.html', function(data) {
+            $('#content').html(data);
+        });
+    },
     edit: function() {
         $.get(inv.partials + 'edit.html', function(data) {
             $('#content').html(data);
