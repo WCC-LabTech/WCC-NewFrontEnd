@@ -3,7 +3,7 @@
 		<form role="form" id="addInv" method="post" action="?/inventory/create">
 			<div class="form-group" style="text-align: center;">
 				<label class="radio-inline">
-				  <input type="radio" id="type" name="type" value="Computer"> Computer</label>
+				  <input type="radio" id="type" name="type" value="Computer" checked> Computer</label>
 				<label class="radio-inline">
 				  <input type="radio" id="type" name="type" value="Switch"> Switch</label>
 				<label class="radio-inline">
@@ -23,13 +23,17 @@
 					<input class="form-control" type="text" name="IS" />
 				</div>
 				<div class="form-group">
-					<label for="machine_name">Machine Name</label>
-					<input class="form-control" type="text" name="machine_name" />
+					<label for="serial">Serial Number</label>
+					<input class="form-control" type="text" name="serial" />
+				</div>
+				<div class="form-group">
+					<label for="model">Model Number</label>
+					<input class="form-control" type="text" name="model" />
 				</div>
 				<div class="form-group">
 					<label>In Use</label><br />
 					<label for="in_use">
-						<input type="radio" name="in_use" value="true" /> Yes
+						<input type="radio" name="in_use" value="true" checked /> Yes
 					</label>
 					<label for="in_use">
 						<input type="radio" name="in_use" value="false" /> no

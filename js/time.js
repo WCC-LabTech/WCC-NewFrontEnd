@@ -161,11 +161,12 @@ var time = {
 	},
 	updateForm : function(id) {
 		$.getJSON(time.config.url + 'workevent/' + id + '/', function(response) {
-			console.log(response);
 			s = response.start_dt.split(/\D/);
 			d = response.end_dt.split(/\D/);
             var s_date = new Date(s[0], --s[1], s[2], s[3], s[4]);
             var e_date = new Date(d[0], --d[1], d[2], d[3], d[4]);
+            s_date.setHours(s_date.getHours() - 5);
+            e_date.setHours(e_date.getHours() - 5);
 			$('#category_update').val(response.category);
             $('#start_time_update').datetimepicker('setDate', s_date);
             $('#end_time_update').datetimepicker('setDate', e_date);

@@ -55,13 +55,15 @@ var faculty = {
         });
     },
     addRequest : function() {
-        var form = $('#requestForm').serializeArray();
+        var data = $.param($('#requestForm').serializeArray());
+        /*
         var data = {};
         for (i in form) {
             data[form[i].name] = form[i].value;
         }
 
         data.upload = "";
+        */
         $('#facultyRequests').modal('hide');
         $.ajax({
             url: faculty.config.url + 'request/derp/',

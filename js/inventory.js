@@ -73,7 +73,7 @@ var inv = {
             list.empty();
             for (i in data) {
                 var html = '<div class="panel panel-default"><div class="panel-heading">';
-                html += '<h2 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#'+i+'">' + data[i].machine_name +' - ' + data[i].IS + '</a>';
+                html += '<h2 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#'+i+'">' + data[i].model +' - ' + data[i].serial + '</a>';
                 if (data[i]['in_use'] == true || data[i]['in_use'] == 'true') {
                         html += '<span class="label label-success pull-right">In Use</span>';
                     } else {

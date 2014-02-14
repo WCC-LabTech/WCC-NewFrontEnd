@@ -1,5 +1,5 @@
 var main = {
-	url : 'http://bosapp.wccnet.edu:8080/',
+	url : 'http://bosapp-dev.wccnet.edu:8080/',
 	path : window.document.URL,
 	controller : '',
 	func : '',
@@ -81,6 +81,7 @@ var main = {
     admin : admin,
     lotto : lotto,
     inventory : inv,
+    calendar: cal,
     error : {
         main : function(code) {
             console.log(code + ': There was an error. Controller: ' + main.controller + ', Function: ' + main.func);

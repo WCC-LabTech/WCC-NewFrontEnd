@@ -8,6 +8,8 @@ h2 {text-transform:capitalize;}
 
 header {margin-top:5px;}
 
+.glyphicon-calendar:before {content:"\e109";}
+
 #user {display:none; text-align:right; margin-bottom:5px;}
 
 table td a {display:block; width:100%;}
@@ -45,6 +47,19 @@ table .total {text-align:right; font-weight:bold;}
 .specs {list-style:none;}
 .specs .title {font-weight:bold;}
 .specs li {margin-left:-10px;}
+
+/* Calendar */
+#calendarDiv {overflow:visible !important;}
+
+.fc-view {overflow: visible !important;}
+.tooltip, .arrow:after {background: black; border: 2px solid white;}
+.tooltip {padding: 10px 20px; color: white; border-radius: 20px; font: bold 14px "Helvetica Neue", Sans-Serif; box-shadow: 0 0 7px black; width: 500px; overflow:visible; z-index: 10 !important;}
+.tooltip-inner {border-radius: 20px; max-width:490px !important;}
+.arrow {width: 400px; height: 16px; overflow: hidden; position: absolute; left: 50%; margin-left: -35px; bottom: -16px;}
+.arrow.top {top: -16px; bottom: auto;}
+.arrow.left {left: 20%;}
+.arrow:after {content: ""; position: absolute; left: 20px; top: -20px; width: 25px; height: 25px; box-shadow: 6px 5px 9px -9px black; -webkit-transform: rotate(45deg); -moz-transform: rotate(45deg); -ms-transform: rotate(45deg); -o-transform: rotate(45deg); tranform: rotate(45deg);}
+.arrow.top:after {bottom: -20px; top: auto;}
 
 /* User Management */
 .actions a {display:inline; margin-left:5px;}
